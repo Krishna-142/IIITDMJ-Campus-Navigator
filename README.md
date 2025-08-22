@@ -68,7 +68,7 @@ When a location is selected, the site requests the user’s current location and
 
 📲 **Scan to Try It**:
 
-![QR Code](./qrcode.png)
+<img src="./qrcode.png" alt="QR Code" width="200" />
 
 ---
 
