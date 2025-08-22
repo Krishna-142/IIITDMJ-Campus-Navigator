@@ -1,72 +1,66 @@
-🌍 IIITDM Jabalpur Campus Navigation Website
-📖 Overview
+<div align="center">
 
-This project is a QR-based campus navigation system for the Indian Institute of Information Technology, Design & Manufacturing (IIITDM) Jabalpur.
+# 🌍 IIITDM Jabalpur Campus Navigation Website  
 
-By scanning a QR code placed around the campus, visitors and students can access a mobile-friendly web application that lists key locations such as:
+### ✨ *"Scan. Click. Navigate – Your Campus Guide Made Simple."*  
 
-Academic Blocks 🎓
+<img src="https://img.shields.io/badge/Project-IIITDM%20Navigation-blue?style=for-the-badge&logo=googlemaps" />  
+<img src="https://img.shields.io/badge/Made%20With-HTML%2C%20CSS%2C%20JS-green?style=for-the-badge&logo=javascript" />  
 
-Hostels 🏢
+</div>  
 
-Library 📚
+---
 
-Health Centre 🏥
+## 📖 Overview  
+A **QR-based campus navigation system** designed for the  
+*Indian Institute of Information Technology, Design & Manufacturing (IIITDM) Jabalpur*.  
 
-Bank & ATM 🏦💳
+By scanning a QR code placed across the campus, visitors and students can instantly access a **mobile-friendly web application** that provides categorized lists of key locations such as:  
 
-Temple ⛩️
+- 🎓 **Academic Blocks**  
+- 🏢 **Hostels**  
+- 📚 **Library**  
+- 🏥 **Health Centre**  
+- 🏦💳 **Bank & ATM**  
+- ⛩️ **Temple**  
+- 📅 **Auditorium & Event Venues**  
 
-Auditorium / Event Venues 📅
+When a location is selected, the site requests the user’s current location and redirects to **Google Maps with real-time navigation**.  
 
-When a location is selected, the site requests the user’s current location (with permission) and redirects them to Google Maps with real-time directions to the chosen place.
+---
 
-⚡ Purpose
+## ⚡ Purpose  
+✔️ Simplify campus navigation for **newcomers, parents, and guests**.  
+✔️ Reduce confusion in locating **essential facilities and venues**.  
+✔️ Deliver a **lightweight, accessible, and user-friendly** guide.  
 
-✅ Make campus navigation easy for newcomers, parents, and guests.
+---
 
-✅ Reduce confusion in locating important facilities and venues.
+## 🎨 Key Features  
+- 📱 **Responsive, mobile-first design**  
+- 🗂️ **Categorized locations with intuitive icons**  
+- 🎨 **Minimal, clean UI with soft color palette**  
+- 🌌 **Animated background for modern look**  
+- 🗺️ **Google Maps integration** for live directions  
+- 🔗 **Instant QR code access**  
 
-✅ Provide a lightweight, accessible, and user-friendly navigation tool.
+---
 
-🎨 Features
+## 🚀 How It Works  
+1️⃣ **Scan** the QR code placed at different campus points.  
+2️⃣ **Browse** the categorized list of locations.  
+3️⃣ **Select** your destination.  
+4️⃣ **Navigate** via Google Maps from your current position.  
 
-📱 Mobile-first design for quick access on the go.
+---
 
-🗂️ Categorized locations for neat organization.
+## 🛠️ Tech Stack  
+- ⚡ **Frontend:** HTML5, CSS3, JavaScript  
+- 🎨 **UI Elements:** Remix Icons, animations  
+- 🗺️ **Navigation:** Google Maps deep linking  
+- 📲 **Access:** QR Code Generator  
 
-🎨 Clean UI with icons and light color theme.
+---
 
-🌌 Animated background for a modern look.
-
-🗺️ Google Maps integration for live navigation.
-
-🔗 QR Code access – scan and go!
-
-🚀 How It Works
-
-Scan the QR code placed at different points in the campus.
-
-Open the link → You’ll see a list of campus locations.
-
-Select your destination → The site will fetch your location.
-
-Get Google Maps directions instantly from your current position.
-
-🛠️ Tech Stack
-
-HTML5, CSS3, JavaScript (Frontend)
-
-Remix Icons for category-based icons
-
-Google Maps Links for navigation
-
-QR Code Generator for quick access
-
-✨ Tagline
-
-"Scan. Click. Navigate – Your campus guide made simple."
-
-👨‍💻 Author
-
-Developed with ❤️ at IIITDM Jabalpur
+## 👨‍💻 Author  
+Developed with ❤️ at **IIITDM Jabalpur**  
