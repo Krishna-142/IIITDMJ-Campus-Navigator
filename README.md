@@ -62,5 +62,15 @@ When a location is selected, the site requests the user’s current location and
 
 ---
 
+🚀 **Live Demo**: [Visit Here](https://iiitdmj-campus-navigator.vercel.app/)
+
+---
+
+📲 **Scan to Try It**:
+
+![QR Code](./qrcode.png)
+
+---
+
 ## 👨‍💻 Author  
 Developed with ❤️ at **IIITDM Jabalpur**  
