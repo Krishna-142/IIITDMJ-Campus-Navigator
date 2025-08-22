@@ -1,0 +1,43 @@
+[
+  { "name": "Entrance Gate", "lat": 23.180097940455973, "lng": 80.02682654322248, "category": "Entry" },
+
+  { "name": "Academic Office (DSA)", "lat": 23.179657403520928, "lng":  80.02768177167383, "category": "Academic" },
+  { "name": "Lecture Hall & Tutorial Complex", "lat": 23.1762322255773, "lng": 80.02571061584734, "category": "Lecture" },
+  { "name": "LHTC Front", "lat": 23.176876972449897, "lng": 80.02445295788772, "category": "Lecture" },
+  { "name": "Indian Bank", "lat": 23.178408658677263, "lng": 80.0258690088848, "category": "Bank" },
+  { "name": "Allahabad Bank ATM", "lat":23.17957919423871, "lng":80.02479439651216, "category": "Bank" },
+
+  { "name": "Mechatronics Lab", "lat": 23.178593579304387, "lng": 80.0260741946468, "category": "Labs" },
+  { "name": "Core Lab Complex", "lat": 23.178386658348003, "lng": 80.02547916644508, "category": "Labs" },
+  { "name": "Computer Centre", "lat": 23.175975156653536, "lng": 80.02658132141819, "category": "Labs" },
+
+
+  { "name": "Central Mess", "lat": 23.17740988407602, "lng": 80.02141522109916, "category": "Food" },
+  { "name": "Nescafe Coffee", "lat": 23.17894740797894, "lng": 80.02260876680201, "category": "Food" },
+  { "name": "Fruit Shop", "lat": 23.17891602113069, "lng": 80.02253129163914, "category": "Food" },
+  { "name": "Zayka Cafe", "lat": 23.178984796257854, "lng": 80.02267978634413, "category": "Food" },
+  { "name": "Harsh Canteen (H1)", "lat": 23.178063689274296, "lng": 80.02264911482047, "category": "Food" },
+  { "name": "Ojas Canteen (H4)", "lat":23.176865613925784, "lng": 80.01956731410098, "category": "Food" },
+  { "name": "Hostel Canteen (H3)", "lat": 23.177881494736848, "lng": 80.01893431275673 , "category": "Food" },
+  { "name": "Hexagon Canteen", "lat": 23.178083280530885, "lng": 80.02394666501169, "category": "Food" },
+  { "name": "Amul shop", "lat": 23.175819299419548, "lng":  80.02731236748237, "category": "Food" },
+
+  { "name": "Vashishtha Hostel(H1)", "lat": 23.17794722669796,  "lng": 80.02260995414493, "category": "Hostels" },
+  { "name": "Aryabhatta Hostel (H3)", "lat": 23.176515564470513, "lng":  80.0205631447915, "category": "Hostels" },
+  { "name": "Vivekanand Hostel (H4)", "lat": 23.176235960969542, "lng":  80.0196973128415, "category": "Hostels" },
+  { "name": "Panini Hostel A", "lat": 23.175067109123464, "lng":   80.02064909045973, "category": "Hostels" },
+  { "name": "Panini Hostel B", "lat": 23.175493534591393,  "lng": 80.02096841177979, "category": "Hostels" },
+  { "name": "Nagarjuna Hostel", "lat": 23.17518762080646,  "lng": 80.02145075503694, "category": "Hostels" },
+  { "name": "Maa Saraswati Girls Hostel ", "lat":23.175565854651445, "lng": 80.02323759076151 , "category": "Hostels" },
+  { "name": "Visitor's Hostel ", "lat":23.174782179159934,  "lng": 80.02866400521228, "category": "Hostels" },
+
+
+  { "name": "Central Library", "lat":23.176173047542186, "lng":  80.02650454971038, "category": "Library" },
+  { "name": "Student Activity Centre", "lat": 23.176233678040088,"lng": 80.02326989640623, "category": "Events" },
+  { "name": "Football and Cricket Ground", "lat":23.176988419351247,"lng": 80.02313215069371, "category": "Sports" },
+  { "name": "Basketball and Tennis Court", "lat": 23.176194506300487,"lng": 80.02084793805848, "category": "Sports" },
+  { "name": "Vollyball Court", "lat": 23.176150083068787,"lng": 80.02050028136817, "category": "Sports" },
+  { "name": "Primary Health Center", "lat": 23.17605962290747,"lng": 80.0282211634744 , "category": "Health" },
+  { "name": "Open Air Theatre", "lat": 23.17666619708562, "lng": 80.02400473084725 , "category": "Events" },
+  { "name": "Shiv temple", "lat": 23.172527999576786, "lng": 80.0333663902971 , "category": "Temple" }
+]

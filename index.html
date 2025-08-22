@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Campus Navigation - IIITDM Jabalpur</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#d6e4f4;
+      --card:#ffffff90;
+      --text:#2a2a2a;
+      --muted:#6a7c92;
+      --primary:#10b8f0;
+      --shadow:rgba(0,0,0,0.08);
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0; font-family:system-ui,Segoe UI,Roboto,Arial;
+      background:var(--bg); color:var(--text); min-height:100vh;
+      overflow-x:hidden; position:relative;
+    }
+    /* Animated background */
+    body::before {
+      content:""; position:fixed; inset:0;
+      background:radial-gradient(circle at 20% 30%, #dbeafe, transparent 40%),
+                 radial-gradient(circle at 80% 70%, #e0f2fe, transparent 40%),
+                 radial-gradient(circle at 50% 90%, #fef9c3, transparent 30%);
+      animation: moveBg 20s infinite alternate;
+      z-index:-1;
+    }
+    @keyframes moveBg {
+      0% { background-position:20% 30%, 80% 70%, 50% 90%; }
+      100% { background-position:30% 20%, 75% 75%, 55% 85%; }
+    }
+
+    .wrap { max-width:1000px; margin:0 auto; padding:16px; }
+    h1 { font-size:1.8rem; margin:0 0 6px; color:var(--primary);}
+    .sub { color:var(--muted); margin:0 0 20px; }
+
+    /* Controls */
+    .controls {
+      display:flex; gap:12px; flex-wrap:wrap; margin:12px 0 28px;
+    }
+    input, select {
+      padding:12px 14px; border-radius:12px;
+      border:1px solid #cbd5e1; background:#fff; color:var(--text);
+      outline:none; flex:1; min-width:160px;
+      box-shadow:0 1px 3px var(--shadow);
+      transition:.2s;
+    }
+    input:focus, select:focus { border-color:var(--primary); box-shadow:0 2px 6px var(--shadow); }
+
+    /* Category sections */
+    .category-block { margin-bottom:28px; }
+    .cat-title { font-weight:600; margin:0 0 14px; color:var(--primary); font-size:1.1rem; }
+
+    /* Cards Grid */
+    .grid {
+      display:grid; 
+      grid-template-columns:repeat(auto-fill, minmax(220px,1fr));
+      gap:14px;
+    }
+    .card {
+      background:var(--card); backdrop-filter:blur(8px);
+      border-radius:16px; padding:14px;
+      display:flex; flex-direction:column; gap:10px;
+      box-shadow:0 4px 10px var(--shadow);
+      transform:translateY(0); transition:.25s;
+    }
+    .card:hover { transform:translateY(-3px); }
+
+    .name { font-weight:600; font-size:1rem; display:flex; align-items:center; gap:8px; }
+    .name i { font-size:1.2rem; color:var(--primary); }
+    .cat { font-size:.85rem; color:var(--muted); }
+
+    /* Buttons */
+    .btns { display:flex; gap:8px; flex-wrap:wrap; }
+    button, a.btn {
+      appearance:none; border:0; border-radius:10px; padding:10px 12px; cursor:pointer;
+      background:var(--primary); color:white; text-decoration:none; font-weight:600; flex:1; text-align:center;
+      transition:.2s; font-size:.95rem;
+    }
+    button:hover, a.btn:hover { background:#2563eb; }
+    .ghost { background:#e2e8f0; color:var(--text); }
+    .ghost:hover { background:#cbd5e1; }
+
+    .footer { color:var(--muted); font-size:.85rem; margin-top:32px; text-align:center; }
+
+    /* 📱 Responsive tweaks */
+    @media(max-width:768px){
+      h1 { font-size:1.5rem; }
+      .controls { flex-direction:column; }
+      input, select { min-width:100%; }
+      .grid { grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); }
+    }
+    @media(max-width:480px){
+      .wrap { padding:12px; }
+      h1 { font-size:1.3rem; }
+      .card { padding:12px; border-radius:12px; }
+      .name { font-size:.95rem; }
+      button, a.btn { font-size:.9rem; padding:9px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>IIITDM Jabalpur Campus Navigation</h1>
+    <p class="sub">Find any place on campus → Get instant Google Maps directions from your location.</p>
+
+    <div class="controls">
+      <input id="q" placeholder="Search places (e.g., library, hostel)"/>
+      <select id="category">
+        <option value="">All categories</option>
+      </select>
+    </div>
+
+    <div id="list"></div>
+
+    <p class="footer">Made for Indian Institute of Information Technology, Design & Manufacturing Jabalpur. <br>Tip: allow location when prompted for accurate directions.</p>
+  </div>
+
+  <script>
+    const icons = {
+      "Library":"ri-book-2-line",
+      "Hostel":"ri-hotel-line",
+      "Food":"ri-restaurant-2-line",
+      "Lab":"ri-building-4-line",
+      "Lecture":"ri-building-4-line",
+      "Sports":"ri-basketball-line",
+      "Academic":"ri-government-line",
+      "Health": "ri-hospital-line",
+      "Bank": "ri-bank-line",
+      "Temple": "ri-ancient-pavilion-line",
+      "Event": "ri-calendar-event-line",
+      "Other":"ri-map-pin-line"
+    };
+
+    const state = { places: [], grouped:{} };
+
+    async function load() {
+      try {
+        const res = await fetch('places.json',{cache:'no-store'});
+        state.places = await res.json();
+        initFilters(state.places);
+        applyFilters();
+      } catch(e) {
+        document.getElementById('list').innerHTML = "<div class='card'>Couldn't load places.json</div>";
+        console.error(e);
+      }
+    }
+
+    function initFilters(places){
+      const catEl=document.getElementById('category');
+      const cats=[...new Set(places.map(p=>p.category).filter(Boolean))].sort();
+      cats.forEach(c=>{
+        const opt=document.createElement('option');
+        opt.value=c; opt.textContent=c; catEl.appendChild(opt);
+      });
+      catEl.addEventListener('change',applyFilters);
+      document.getElementById('q').addEventListener('input',applyFilters);
+    }
+
+    function applyFilters(){
+      const q=document.getElementById('q').value.trim().toLowerCase();
+      const cat=document.getElementById('category').value;
+      let filtered=state.places.filter(p=>{
+        const matchQ=!q || p.name.toLowerCase().includes(q) || (p.category||'').toLowerCase().includes(q);
+        const matchC=!cat || p.category===cat;
+        return matchQ && matchC;
+      });
+      renderGrouped(filtered);
+    }
+
+    function renderGrouped(items){
+      const list=document.getElementById('list');
+      list.innerHTML="";
+      if(!items.length){ list.innerHTML="<div class='card'>No places found.</div>"; return; }
+
+      const grouped={};
+      items.forEach(p=>{
+        if(!grouped[p.category]) grouped[p.category]=[];
+        grouped[p.category].push(p);
+      });
+
+      Object.keys(grouped).sort().forEach(cat=>{
+        const block=document.createElement('div'); block.className="category-block";
+        const title=document.createElement('div'); title.className="cat-title"; title.textContent=cat;
+        block.appendChild(title);
+        const grid=document.createElement('div'); grid.className="grid";
+        grouped[cat].forEach(p=>{
+          const card=document.createElement('div'); card.className='card';
+          const icon=icons[p.category] || icons["Other"];
+          card.innerHTML=`
+            <div class="name"><i class="${icon}"></i> ${p.name}</div>
+            <div class="cat">${p.category||'—'}</div>
+            <div class="btns">
+              <button class="nav">Navigate</button>
+              <a class="btn ghost preview" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.lat+','+p.lng)}" target="_blank" rel="noopener">View</a>
+            </div>
+          `;
+          card.querySelector('.nav').addEventListener('click',()=>navigateTo(p));
+          grid.appendChild(card);
+        });
+        block.appendChild(grid);
+        list.appendChild(block);
+      });
+    }
+
+    async function getUserPosition(){
+      return new Promise((resolve,reject)=>{
+        if(!('geolocation' in navigator)) return reject(new Error('Geolocation not supported'));
+        navigator.geolocation.getCurrentPosition(
+          pos=>resolve({lat:pos.coords.latitude,lng:pos.coords.longitude}),
+          err=>reject(err),
+          { enableHighAccuracy:true, timeout:10000, maximumAge:0 }
+        );
+      });
+    }
+
+    async function navigateTo(place){
+      try{
+        const origin=await getUserPosition();
+        const url=`https://www.google.com/maps/dir/?api=1&origin=${origin.lat},${origin.lng}&destination=${place.lat},${place.lng}&travelmode=walking`;
+        window.location.href=url;
+      }catch(e){
+        const manual=prompt("Location permission was blocked.\nEnter your starting point (address or lat,lng):");
+        if(manual && manual.trim()){
+          const url=`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(manual)}&destination=${place.lat},${place.lng}&travelmode=walking`;
+          window.location.href=url;
+        }else{
+          const url=`https://www.google.com/maps/dir/?api=1&destination=${place.lat},${place.lng}&travelmode=walking`;
+          window.location.href=url;
+        }
+      }
+    }
+
+    load();
+  </script>
+</body>
+</html>
